@@ -52,3 +52,5 @@ def excel_download(request):
         response = HttpResponse(f, content_type='Django_askdjango/bug.xlsx')
         response['Content-Disposition'] = 'attachment; filename="{}"'.format(filename)
         return response
+
+
