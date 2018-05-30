@@ -5,6 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-    <p>모두들 반가워여</p>
+    <form action="" method="get">
+        <input type="text" name="q" value="{{ q }}" autocomplete="off" placeholder="제목을 입력하세요"/>
+        <input type="submit" value="검색"/>
+    </form>
+
+    <ul>
+        {% for post in post_list %}
+            <li>
+                {{ post.id }}
+                {{ post.title }}
+                <small>by {{ post.author }}</small>
+                <small>at {{ post.updated_at }}</small>
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
