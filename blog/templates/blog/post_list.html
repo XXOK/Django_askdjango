@@ -5,18 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="" method="get">
-        <input type="text" name="q" value="{{ q }}" autocomplete="off" placeholder="제목을 입력하세요"/>
-        <input type="submit" value="검색"/>
+    <p><form action="" method="get">
+        <input type="number" name="id-search" value="{{ id_search }}" placeholder="id를 검색하세요" autocomplete="off">
+        <input type="submit" value="검색">
     </form>
-
+    <p><form action="" method="get">
+        <input type="text" name="title-search" value="{{ title_search }}" placeholder="제목을 검색하세요" autocomplete="off">
+        <input type="submit" value="검색">
+    </form>
+    <p><form action="" method="get">
+        <input type="date" name="date-search" value="{{ date_search }}">
+        <input type="submit" value="검색">
+    </form>
     <ul>
-        {% for post in post_list %}
+        {% for i in qs %}
             <li>
-                {{ post.id }}
-                {{ post.title }}
-                <small>by {{ post.author }}</small>
-                <small>at {{ post.updated_at }}</small>
+                <p> {{ i.id }} {{ i.title }} by {{ i.updated_at }}
             </li>
         {% endfor %}
     </ul>
