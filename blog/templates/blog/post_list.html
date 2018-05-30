@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <h1>AskDjango</h1>
 </head>
 <body>
     <p><form action="" method="get">
@@ -11,7 +12,7 @@
     </form>
     <p><form action="" method="get">
         <input type="text" name="title-search" value="{{ title_search }}" placeholder="제목을 검색하세요" autocomplete="off">
-        <input type="submit" value="검색">
+        <input type="submit" value="검 색">
     </form>
     <p><form action="" method="get">
         <input type="date" name="date-search" value="{{ date_search }}">
@@ -20,7 +21,12 @@
     <ul>
         {% for i in qs %}
             <li>
-                <p> {{ i.id }} {{ i.title }} by {{ i.updated_at }}
+                <p>
+                {{ i.id }}
+                <a href="/blog/{{ i.id }}">
+                    {{ i.title }}
+                </a>
+                by{{ i.updated_at }}
             </li>
         {% endfor %}
     </ul>

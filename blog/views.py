@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Post
+from django.shortcuts import render, get_object_or_404
+from .models import Post, Comment
 
 
 def post_list(request):
@@ -24,4 +24,11 @@ def post_list(request):
         'title_search': title_search,
         'date_search': date_search,
 
+    })
+
+
+def post_detail(request, id):
+    post =  get_object_or_404(Post, id=id)
+    return render(request, 'blog/post_detail.html',{
+        'post': post,
     })

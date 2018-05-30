@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    {{ post.content|linebreaks }}
+
+    <h1>Comments</h1>
+    {% for i in post.comment_set.all %}
+        <ul>
+            <li>
+                작성자: {{ i.author }}
+                <small>| 생성일: {{ i.created_at }}</small>
+                <p>{{ i.message }}
+            </li>
+        </ul>
+    {% endfor %}
+</body>
+</html>

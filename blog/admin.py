@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post,Comment
 
 
 @admin.register(Post)
@@ -28,3 +28,7 @@ class PostAdmin(admin.ModelAdmin):
         self.message_user(request, '{}건의 포스팅을 withdrawn 상태로 변경합니다.'.format(update_count))
     make_withdrawn.short_description = '지정 포스팅을 withdrawn 상태로 변경합니다.'
 
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['post_id', 'author', 'message', 'created_at', 'updated_at']
