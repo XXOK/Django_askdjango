@@ -15,14 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
+from django.shortcuts import redirect, resolve_url
 from . import settings
 
 urlpatterns = [
     url(r'admin/', admin.site.urls),
-    url(r'^blog/', include('blog.urls')),
-    url(r'^dojo/', include('dojo.urls')),
-    url(r'^accounts/', include('accounts.urls')),
-    url(r'^shop/', include('shop.urls')),
+    url(r'^$', lambda root: redirect('blog:post_list'), name='root'),
+    url(r'^blog/', include('blog.urls', namespace='blog')),
+    url(r'^dojo/', include('dojo.urls', namespace='dojo')),
+    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    url(r'^shop/', include('shop.urls', namespace='shop')),
 ]
 
 if settings.DEBUG:

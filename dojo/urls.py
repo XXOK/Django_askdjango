@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from . import views, views_cbv
 
+app_name = 'dojo'
 
 urlpatterns = [
     url(r'^sum/(?P<numbers>[\d/]+)/$', views.mysum),
