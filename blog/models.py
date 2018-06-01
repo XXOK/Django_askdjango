@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.forms import ValidationError
+from django.shortcuts import reverse
 import re
 
 
@@ -29,8 +30,13 @@ class Post(models.Model):
     class Meta:
         ordering = ['-id']
 
+
     def __str__(self):
         return self.title
+
+
+    def get_absolute_url(self):
+        return reverse('blog:post_detail', args=[self.id])
 
 
 class Comment(models.Model):
