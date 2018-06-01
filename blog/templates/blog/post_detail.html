@@ -6,16 +6,18 @@
 
 {% block content %}
     <h2>{{ post.title }}</h2>
-        {{ post.content|linebreaks }}
+    {{ post.content|linebreaks }}
 
-        <h1>Comments</h1>
-        {% for i in post.comment_set.all %}
-            <ul>
-                <li>
-                    작성자: {{ i.author }}
-                    <small>| 생성일: {{ i.created_at }}</small>
-                    <p>{{ i.message }}
-                </li>
-            </ul>
-        {% endfor %}
+    <h1>Comments</h1>
+    {% for i in post.comment_set.all %}
+        <ul>
+            <li>
+                작성자: {{ i.author }}
+                <small>| 생성일: {{ i.created_at }}</small>
+                <p>{{ i.message }}
+            </li>
+        </ul>
+    {% endfor %}
+    <hr/>
+    <a href="{% url 'post_list' %}">목록으로</a>
 {% endblock %}

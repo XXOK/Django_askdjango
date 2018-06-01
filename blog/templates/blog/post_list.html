@@ -17,7 +17,7 @@
                 <li>
                     <p>
                     {{ i.id }}
-                    <a href="/blog/{{ i.id }}">
+                    <a href="{% url 'post_detail' i.id %}">
                         {{ i.title }}
                     </a>
                     by{{ i.updated_at }}
