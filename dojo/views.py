@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse, redirect
+from django.shortcuts import render,HttpResponse, redirect, get_object_or_404
 from django.http import JsonResponse
 from .forms import PostForm
 from .models import Post
@@ -9,14 +9,29 @@ def post_new(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = Post()
-            post.title = form.cleaned_data['title']
-            post.content = form.cleaned_data['content']
+            post = form.save(commit=False)
+            post.ip = request.META['REMOTE_ADDR']
             post.save()
             return redirect('/dojo/')
     else:
         form = PostForm()
-    return render(request, 'dojo/post_form.html',{
+    return render(request, 'dojo/post_form.html', {
+        'form': form,
+    })
+
+
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.ip = request.META['REMOTE_ADDR']
+            post.save()
+            return redirect('/dojo/')
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'dojo/post_form.html', {
         'form': form,
     })
 
@@ -70,5 +85,3 @@ def excel_download(request):
         response = HttpResponse(f, content_type='Django_askdjango/bug.xlsx')
         response['Content-Disposition'] = 'attachment; filename="{}"'.format(filename)
         return response
-
-

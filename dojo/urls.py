@@ -4,7 +4,8 @@ from . import views, views_cbv
 app_name = 'dojo'
 
 urlpatterns = [
-    url(r'^new/$', views.post_new),
+    url(r'^post_new', views.post_new, name='post_new'),
+    url(r'^(?P<pk>\d+)/edit', views.post_edit),
 
     url(r'^sum/(?P<numbers>[\d/]+)/$', views.mysum),
     url(r'^hello/(?P<name>[ㄱ-힣]+)/(?P<age>\d+)/$', views.profile),
