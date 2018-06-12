@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, resolve_url
+from django.shortcuts import render, get_object_or_404
 from .models import Post
 
 
