@@ -19,6 +19,7 @@ class Post(models.Model):
     ip = models.CharField(
         max_length=20
     )
+    user_agent = models.CharField(max_length=200)
     created_at = models.DateTimeField(
         auto_now_add=True
     )

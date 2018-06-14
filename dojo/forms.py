@@ -17,7 +17,10 @@ from django.shortcuts import redirect
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'user_agent']
+        widgets = {
+            'user_agent': forms.HiddenInput,
+        }
 
 
 class GameUserForm(forms.ModelForm):
