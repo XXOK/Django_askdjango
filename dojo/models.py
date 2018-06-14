@@ -5,7 +5,7 @@ from django.core.validators import MinLengthValidator
 
 def min_length_3_validator(value):
     if len(value) < 3:
-        raise forms.ValidationError('error')
+        raise forms.ValidationError('제목 더써라')
 
 
 class Post(models.Model):
