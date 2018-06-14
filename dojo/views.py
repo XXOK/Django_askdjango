@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse, redirect, get_object_or_404
 from django.http import JsonResponse
-from .forms import PostForm
+from .forms import PostForm, GameUserForm
 from .models import Post
 import os
 
@@ -32,6 +32,19 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'dojo/post_form.html', {
+        'form': form,
+    })
+
+
+def create_user(request):
+    if request.method == 'POST':
+        form = GameUserForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            return redirect('dojo:create_user')
+    else:
+        form = GameUserForm()
+    return render(request, 'dojo/create_user.html', {
         'form': form,
     })
 

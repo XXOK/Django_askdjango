@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, GameUser
 from django.shortcuts import redirect
 
 
@@ -18,3 +18,9 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content']
+
+
+class GameUserForm(forms.ModelForm):
+    class Meta:
+        model = GameUser
+        fields = '__all__'

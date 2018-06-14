@@ -40,7 +40,6 @@ def post_new(request):
         if form.is_valid():
             post = form.save()
             return redirect(post)
-            # post.get_absolute_url() -> post 안에 get_absolute_url() 구현되어 있음
     else:
         form = PostForm()
     return render(request, 'blog/post_form.html', {
@@ -55,7 +54,6 @@ def post_edit(request, id):
         if form.is_valid():
             post = form.save()
             return redirect(post)
-            # post.get_absolute_url() -> post 안에 get_absolute_url() 구현되어 있음
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_form.html', {

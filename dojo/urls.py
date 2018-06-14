@@ -7,6 +7,8 @@ urlpatterns = [
     url(r'^post_new', views.post_new, name='post_new'),
     url(r'^(?P<pk>\d+)/edit', views.post_edit),
 
+    url(r'^create_user$', views.create_user, name='create_user'),
+
     url(r'^sum/(?P<numbers>[\d/]+)/$', views.mysum),
     url(r'^hello/(?P<name>[ㄱ-힣]+)/(?P<age>\d+)/$', views.profile),
 
