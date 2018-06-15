@@ -1,5 +1,6 @@
 from django.shortcuts import render,HttpResponse, redirect, get_object_or_404
 from django.http import JsonResponse
+from django.contrib import messages
 from .forms import PostForm, GameUserForm
 from .models import Post
 import os
@@ -41,6 +42,7 @@ def create_user(request):
         form = GameUserForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save()
+            messages.success(request, '계정 생성이 완료되었습니다.')
             return redirect('dojo:create_user')
     else:
         form = GameUserForm()

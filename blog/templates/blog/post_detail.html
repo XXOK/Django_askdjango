@@ -5,6 +5,15 @@
 {% endblock %}
 
 {% block content %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <h2>{{ post.title }}</h2>
     {{ post.content|linebreaks }}
 
