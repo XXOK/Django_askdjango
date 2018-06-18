@@ -4,7 +4,7 @@ from .models import Post,Comment,Tag
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'content_size', 'status', 'created_at', 'updated_at']
+    list_display = ['id', 'title', 'content_size', 'photo', 'status', 'created_at', 'updated_at']
 
     actions = ['make_draft', 'make_published', 'make_withdrawn']
 
