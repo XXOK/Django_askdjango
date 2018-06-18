@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.forms import ValidationError
 from django.shortcuts import reverse
+from django.core.validators import MinLengthValidator
 import re
 
 
@@ -20,6 +21,7 @@ class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, verbose_name='제목', help_text='포스팅 제목을 입력해주세요. 최대 100자 내외')
     content = models.TextField(verbose_name='내용') # 길이 제한이 없는 문자열
+    photo = models.ImageField(max_length=300, blank=True)
     tags = models.CharField(max_length=100, blank=True)
     lnglat = models.CharField(max_length=50, help_text='Ex: 127,35', blank=True, validators=[lnglat_validator])
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)

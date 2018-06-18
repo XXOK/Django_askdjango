@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
-from django.shortcuts import redirect, resolve_url
+from django.conf.urls.static import static
+from django.shortcuts import redirect
 from . import settings
 
 urlpatterns = [
@@ -26,6 +27,8 @@ urlpatterns = [
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
     url(r'^shop/', include('shop.urls', namespace='shop')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
