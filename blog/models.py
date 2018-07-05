@@ -8,7 +8,7 @@ import re
 
 
 def lnglat_validator(value):
-    if not re.match(r'^([+-]?\d+\.?\d*),([+-]?\d+\.?\d*)$', value):
+    if not re.match(r'^([+-]?\d+\.?\d*), ([+-]?\d+\.?\d*)$', value):
         raise ValidationError('Invalid LngLat Type')
 
 
@@ -32,7 +32,7 @@ class Post(models.Model):
                               options={'quality':60})
     tags = models.CharField(max_length=100,
                             blank=True)
-    lnglat = models.CharField(max_length=50,
+    lnglat = models.CharField(max_length=500,
                               help_text='Ex: 127,35',
                               blank=True,
                               validators=[lnglat_validator])
