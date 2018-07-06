@@ -21,4 +21,6 @@ urlpatterns = [
     url(r'^cbv/post_list2$',views_cbv.post_list2),
     # url(r'^cbv/post_list3$',views_cbv.post_list3),
     # url(r'^cbv/excel_download$',views_cbv.excel_download),
+
+    url(r'^(?P<id>[\d/]+)/$',views.post_detail, name='post_detail'),
 ]
