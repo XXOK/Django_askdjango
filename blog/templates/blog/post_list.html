@@ -1,17 +1,17 @@
 {% extends 'blog/layout.html' %}
 {% block content %}
-<p><form action="" method="get">
-    <input type="number" name="id-search" value="{{ id_search }}" placeholder="id를 검색하세요" autocomplete="off">
-    <input type="submit" value="검색">
-</form>
+<!--<p><form action="" method="get">-->
+    <!--<input type="number" name="id-search" value="{{ id_search }}" placeholder="id를 검색하세요" autocomplete="off">-->
+    <!--<input type="submit" value="검색">-->
+<!--</form>-->
 <p><form action="" method="get">
     <input type="text" name="title-search" value="{{ title_search }}" placeholder="제목을 검색하세요" autocomplete="off">
     <input type="submit" value="검색">
 </form>
-<p><form action="" method="get">
-    <input type="date" name="date-search" value="{{ date_search }}">
-    <input type="submit" value="검색">
-</form>
+<!--<p><form action="" method="get">-->
+    <!--<input type="date" name="date-search" value="{{ date_search }}">-->
+    <!--<input type="submit" value="검색">-->
+<!--</form>-->
 <a href="{% url 'blog:post_new' %}">등록하기</a>
 <ul>
     {% for i in post_list %}
