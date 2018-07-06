@@ -1,4 +1,4 @@
-from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic import CreateView, UpdateView, ListView, DetailView, DeleteView
 from django import forms
 from .models import Post
 
@@ -20,3 +20,7 @@ class PostCreateView(CreateView):
 
 
 post_new = PostCreateView.as_view()
+
+post_edit = UpdateView.as_view(model=Post, fields='__all__')
+
+post_delete = DeleteView.as_view(model=Post, success_url='/blog/')
