@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.conf import settings
 
@@ -17,7 +18,6 @@ def signup(request):
     })
 
 
-
+@login_required
 def profile(request):
-    # user = Profile.objects.all().first()
     return render(request, 'accounts/profile.html')
