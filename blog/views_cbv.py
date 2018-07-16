@@ -3,23 +3,16 @@ from django import forms
 from .models import Post
 
 
-post_list = ListView.as_view(model=Post, paginate_by=10)
+class PostListView(ListView):
+    model = Post
+    queryset = Post.objects.all().prefetch_related('tag_set', 'comment_set')
+    paginate_by = 10
+
+post_list = PostListView.as_view()
 
 post_detail = DetailView.as_view(model=Post)
 
-
-class PostForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = '__all__'
-
-
-class PostCreateView(CreateView):
-    model = Post
-    form_class = PostForm
-
-
-post_new = PostCreateView.as_view()
+post_new = CreateView.as_view(model=Post, fields='__all__')
 
 post_edit = UpdateView.as_view(model=Post, fields='__all__')
 

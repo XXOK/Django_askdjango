@@ -14,7 +14,7 @@
 <!--</form>-->
 <a href="{% url 'blog:post_new' %}">등록하기</a>
 <ul>
-    {% for i in qs %}
+    {% for i in post_list %}
         <li>
             <p>
             {{ i.id }}
@@ -25,9 +25,6 @@
                 <span class="lable lable-info">{{ tag.name }}</span>
             {% endfor %}
             by {{ i.updated_at |  date:"Y/m/d"}}
-        <!--</li>-->
-            <!--{{ i.comment_set.all }}-->
-        <!--</li>-->
     {% endfor %}
 </ul>
 {% endblock %}
