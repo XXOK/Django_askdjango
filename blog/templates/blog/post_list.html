@@ -14,15 +14,20 @@
 <!--</form>-->
 <a href="{% url 'blog:post_new' %}">등록하기</a>
 <ul>
-    {% for i in post_list %}
+    {% for i in qs %}
         <li>
             <p>
             {{ i.id }}
             <a href="{{ i.get_absolute_url }}">
                 {{ i.title }}
             </a>
+            {% for tag in i.tag_set.all %}
+                <span class="lable lable-info">{{ tag.name }}</span>
+            {% endfor %}
             by {{ i.updated_at |  date:"Y/m/d"}}
-        </li>
+        <!--</li>-->
+            <!--{{ i.comment_set.all }}-->
+        <!--</li>-->
     {% endfor %}
 </ul>
 {% endblock %}
