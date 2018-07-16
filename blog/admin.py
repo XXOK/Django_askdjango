@@ -31,7 +31,15 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['post_id', 'author', 'message', 'created_at', 'updated_at']
+    list_display = ['post_id', 'id', 'author', 'post_content_len', 'message', 'created_at', 'updated_at']
+    # list_select_related = ['post']
+
+    def post_content_len(self, comment):
+        return '{}글자'.format(len(comment.post.content))
+
+    def get_queryset(self,request):
+        qs = super().get_queryset(request)
+        return qs.select_related('post')
 
 
 @admin.register(Tag)
