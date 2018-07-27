@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import raven
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'raven.contrib.django.raven_compat',
     'debug_toolbar',
     'bootstrap3',
     'imagekit',
@@ -143,3 +145,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 INTERNAL_IPS = '127.0.0.1'
 
 NAVER_CLIENT_ID = 'ahnfSzdec_8LjaLxqcva'
+
+GIT_ROOT = BASE_DIR # FIXME: 현 프로젝트 ROOT 지정
+
+if os.path.exists(os.path.join(GIT_ROOT, '.git')):
+    release = raven.fetch_git_sha(GIT_ROOT) # 현재 최근 커밋해시 획득
+else:
+    release = 'dev'
+
+RAVEN_CONFIG = {
+    'dsn': 'https://b896b07923e5478e857ecf5bf1bb42ef:5d7f6cb927224df6913c977e672cfc2c@sentry.io/1250915',
+    # 'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+    'release': raven.fetch_git_sha(os.path.dirname('.Django_askdjango')),
+}

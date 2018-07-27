@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from .models import Post, Comment
 from .forms import PostForm
+import logging
 
 
 def post_list(request):
